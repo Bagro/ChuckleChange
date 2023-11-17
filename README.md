@@ -1,11 +1,13 @@
 # chuckle-change
 
-This template should help get you started developing with Vue 3 in Vite.
+## Config
+Add .env file with url to Switcharoo
+```
+VITE_API_URL=<URL>
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
+# Example
+VITE_API_URL=https://localhost:7227
+```
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
