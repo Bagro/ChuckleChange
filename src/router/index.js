@@ -14,18 +14,24 @@ const router = createRouter({
         {
           path: '/features',
           name: 'features',
-          component: () => import('../components/FeaturesComponent.vue')
+          component: () => import('../components/FeaturesComponent.vue'),
         },
         {
           path: '/feature/:id',
           name: 'featureEdit',
-          component: () => import('../components/FeatureComponent.vue'),
+          component: () => import('../components/FeatureEditComponent.vue'),
           props: true
         },
         {
-          path: '/Environments',
-          name: 'Environments',
+          path: '/environments',
+          name: 'environments',
           component: () => import('../components/EnvironmentsComponent.vue')
+        },
+        {
+          path: '/environment/:id',
+          name: 'environmentEdit',
+          component: () => import('../components/EnvironmentEditComponent.vue'),
+          props: true
         }
       ]
     },
@@ -45,7 +51,8 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/RegisterView.vue')
     }
-  ]
+  ],
+  linkActiveClass: 'underline decoration-double'
 });
 
 router.beforeEach(async (to) => {

@@ -78,7 +78,6 @@ async function onSubmit() {
   if (result === "") {
     await router.push('/');
   }
-
 }
 
 </script>
