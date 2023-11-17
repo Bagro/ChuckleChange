@@ -28,8 +28,8 @@ function toggleEnvironment(featureId, environmentId) {
 </script>
 
 <template>
-  <div class="w-9/12 mx-auto rounded-lg bg-slate-100 p-6 m-2">
-    <div v-for="feature in features" :key="feature.id" class="flex flex-row">
+<!--  <div class="w-9/12 mx-auto rounded-lg bg-slate-100 p-6 m-2">-->
+    <div v-for="feature in features" :key="feature.id" class="flex flex-row mb-3 w-9/12 mx-auto rounded-lg bg-slate-100 p-6 m-2">
       <div class="w-1/4 group">
         <div class="flex justify-between">
           <h3 class="font-bold text-lg">{{ feature.name }}</h3>
@@ -52,7 +52,7 @@ function toggleEnvironment(featureId, environmentId) {
         </div>
       </div>
     </div>
-  </div>
+<!--  </div>-->
 </template>
 
 <style scoped>

@@ -42,7 +42,7 @@ async function onSubmit() {
   let featureId = id;
 
   if (mode === 'create') {
-    const result = fetchWrapper.post(`${baseUrl}/feature`, {
+    const result = await fetchWrapper.post(`${baseUrl}/feature`, {
       name: feature.value.name,
       description: feature.value.description
     });
