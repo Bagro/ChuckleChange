@@ -1,5 +1,5 @@
-# chuckle-change
-
+# Chuckle Change
+A web based user interface for Switcharoo 
 ## Config
 Add .env file with url to Switcharoo
 ```
