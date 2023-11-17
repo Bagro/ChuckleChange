@@ -25,6 +25,12 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/RegisterView.vue')
+    },
+    {
+        path: '/feature/:id',
+        name: 'featureEdit',
+        component: () => import('../views/FeatureView.vue'),
+        props: true
     }
   ]
 });
@@ -35,7 +41,7 @@ router.beforeEach(async (to) => {
   const authRequired = !publicPages.includes(to.path);
   const authStore = useAuthStore();
 
-  if (authRequired && !authStore.user) {
+  if (authRequired && !authStore.user.refreshToken) {
     return {
       path: '/login',
       query: { redirect: to.path },

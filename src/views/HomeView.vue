@@ -1,5 +1,6 @@
 <script setup>
 import {RouterLink} from "vue-router";
+import Features from "@/components/FeaturesComponent.vue";
 </script>
 
 <template>
@@ -9,6 +10,6 @@ import {RouterLink} from "vue-router";
     </nav>
   </header>
   <main>
-    <RouterView />
+    <Features />
   </main>
 </template>

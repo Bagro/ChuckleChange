@@ -4,7 +4,8 @@ export const fetchWrapper = {
     get: request('GET'),
     post: request('POST'),
     put: request('PUT'),
-    delete: request('DELETE')
+    delete: request('DELETE'),
+    addHeader: addHeader,
 };
 
 function request(method) {
@@ -23,7 +24,9 @@ function request(method) {
             requestOptions.credentials = credentials;
         }
 
-        return fetch(url, requestOptions).then(handleResponse);
+        return fetch(url, requestOptions).then(handleResponse).catch(reason => {
+            console.log(reason);
+        });
     }
 }
 
@@ -34,7 +37,7 @@ function addHeader(url) {
 
     if(isLoggedIn && isApiUrl) {
         return {
-            Authorization: `Bearer ${user.token}`
+            Authorization: `Bearer ${user.accessToken}`
         };
     }
 
@@ -57,5 +60,7 @@ function handleResponse(response) {
         }
 
         return data;
+    }).catch(reason => {
+        console.log(reason);
     });
 }
