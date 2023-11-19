@@ -57,7 +57,6 @@ function toggleEnvironment(featureId, environmentId) {
         </div>
       </div>
     </div>
-<!--  </div>-->
 </template>
 
 <style scoped>
