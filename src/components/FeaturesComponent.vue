@@ -28,13 +28,13 @@ function toggleEnvironment(featureId, environmentId) {
 </script>
 
 <template>
-  <div class="flex flex-row mb-3 w-9/12 mx-auto rounded-lg  my-2 justify-center">
+  <div class="flex flex-row mb-3 w-6/12 mx-auto rounded-lg  my-2 justify-center">
     <button @click="$router.push({name: 'featureEdit', params: {id: 'new'}})"
             class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
       Add feature
     </button>
   </div>
-    <div v-for="feature in features" :key="feature.id" class="flex flex-row mb-3 w-9/12 mx-auto rounded-lg bg-slate-100 p-6 m-2">
+    <div v-for="feature in features" :key="feature.id" class="flex flex-row mb-3 w-6/12 mx-auto rounded-lg bg-slate-100 p-6 m-2">
       <div class="w-1/4 group">
         <div class="flex justify-between">
           <h3 class="font-bold text-lg">{{ feature.name }}</h3>
@@ -43,6 +43,7 @@ function toggleEnvironment(featureId, environmentId) {
           </RouterLink>
         </div>
 
+        <p class="text-xs bg-slate-300 p-1 mt-2 rounded">{{ feature.key }}</p>
         <p>{{ feature.description }}</p>
       </div>
       <div class="w-3/4">
