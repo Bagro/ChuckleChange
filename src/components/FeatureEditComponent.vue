@@ -11,13 +11,14 @@ const id = props.id === 'new' ? null : props.id;
 
 const feature = ref({
   name: '',
+  key: '',
   description: '',
   environments: []
 });
 
 const environments = ref([]);
 const inFeatureEnvironment = ref([]);
-const enbledEnvironments = ref([]);
+const enabledEnvironments = ref([]);
 const isLoading = ref(mode === 'edit');
 
 if (mode === 'edit') {
@@ -28,7 +29,7 @@ if (mode === 'edit') {
     feature.value.environments.forEach(featureEnvironment => {
       inFeatureEnvironment.value.push(featureEnvironment.environmentId);
       if (featureEnvironment.isEnabled) {
-        enbledEnvironments.value.push(featureEnvironment.environmentId);
+        enabledEnvironments.value.push(featureEnvironment.environmentId);
       }
     })
   });
@@ -38,46 +39,41 @@ fetchWrapper.get(`${baseUrl}/environments`).then(result => {
   environments.value = result;
 });
 
+function generatedKey() {
+  feature.value.key = feature.value.name.trimEnd().replaceAll(" ", "-").toLowerCase();
+}
+
 async function onSubmit() {
   let featureId = id;
-
-  if (mode === 'create') {
-    const result = await fetchWrapper.post(`${baseUrl}/feature`, {
-      name: feature.value.name,
-      description: feature.value.description
-    });
-
-    if (result) {
-      featureId = result.id;
-    }
-  }
 
   const updateFeature = {
     id: featureId,
     name: feature.value.name,
+    key: feature.value.key,
     description: feature.value.description,
     environments: inFeatureEnvironment.value.map(id => {
       return {
         id: id,
-        isEnabled: enbledEnvironments.value.includes(id),
+        isEnabled: enabledEnvironments.value.includes(id),
       }
     })
   };
 
-  const requestOptions = {
-    method: 'PUT',
-    headers: fetchWrapper.addHeader(`${baseUrl}/feature`),
-  };
+  if (mode === 'create') {
+    const result = await fetchWrapper.post(`${baseUrl}/feature`, updateFeature);
 
-  requestOptions.headers['Content-Type'] = 'application/json';
-  requestOptions.headers['accept'] = '*/*';
-  requestOptions.body = JSON.stringify(updateFeature);
+    if (!result) {
+      return;
+    }
+  } else {
+    const result = await fetchWrapper.put(`${baseUrl}/feature`, updateFeature);
 
-  const result = await fetchWrapper.put(`${baseUrl}/feature`, updateFeature); //.then(result => {
-
-  if (result === "") {
-    await router.push('/');
+    if (result !== "") {
+      return;
+    }
   }
+
+  await router.push('/');
 }
 
 </script>
@@ -89,8 +85,15 @@ async function onSubmit() {
         <div>
           <label for="name" class="block text-sm font-medium leading-6 text-white">Feature name</label>
           <div class="mt-2">
-            <input name="name" type="text" v-model="feature.name"
+            <input name="name" type="text" v-model="feature.name" @change="generatedKey"
                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+          </div>
+        </div>
+        <div>
+          <label for="name" class="block text-sm font-medium leading-6 text-white">Feature key</label>
+          <div class="mt-2">
+            <input name="name" type="text" v-model="feature.key" v-text="generatedKey" disabled
+                   class="block w-full rounded-md border-0 py-1.5 bg-slate-300 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
           </div>
         </div>
         <div>
