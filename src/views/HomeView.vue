@@ -29,13 +29,13 @@ import {RouterLink} from "vue-router";
     </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
-            <a href="https://codeberg.org/bagro/ChuckleChange" class="hover:underline mx-2" target="_blank"
+            <a href="https://github.com/bagro/ChuckleChange" class="hover:underline mx-2" target="_blank"
                rel="noopener noreferrer">
-              <img src="@/assets/codeberg-logo_icon_white.svg" alt="Codeberg"/>
+              <img src="@/assets/github-mark-white.svg" alt="GitHub" class="object-contain h-6" />
             </a>
           </li>
           <li>
-            <a href="https://codeberg.org/bagro/ChuckleChange/src/branch/main/LICENSE" class="hover:underline mx-2"
+            <a href="https://github.com/Bagro/ChuckleChange/blob/main/LICENSE" class="hover:underline mx-2"
                target="_blank" rel="noopener noreferrer">
               <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License" class="px-2"/>
             </a>
